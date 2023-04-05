@@ -1,0 +1,87 @@
+{
+  "name": "context-lpic-tools",
+  "displayName": "ConTeXt LPiC Tools",
+  "description": "ConTeXt for VS Code",
+  "version": "0.0.9",
+  "preview": true,
+  "publisher": "lpic-tools",
+  "icon" : "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litProgConTeXt/conTeXt-langServer"
+  },
+  "homepage": "https://github.com/litProgConTeXt/conTeXt-langServer",
+  "bugs": {
+    "url": "https://github.com/litProgConTeXt/conTeXt-langServer/issues"
+  },
+  "license": "Apache 2.0",
+  "author": {
+    "name": "Stephen Gaito"
+  },
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ConTeXt",
+    "TeX",
+    "typesetting",
+    "Litterate",
+    "Programming"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "context",
+        "aliases" : [ "ConTeXt" ],
+        "extensions": [ ".tex" ],
+        "firstLine" : "[Cc]on[Tt]e[Xx]t",
+        "configuration" : "./languages/context.json",
+        "icon" : {
+          "light" : "./images/icon.png",
+          "dark" : "./images/icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "context",
+        "scopeName": "source.context",
+        "path": "./syntaxes/context.tmGrammar.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "reset && npm run lint && npm run build && npm run dist && npm version patch && vsce package",
+    "dist": "webpack",
+    "build": "tsc -p .",
+    "lint": "eslint src/ "
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    }
+  },
+  "devDependencies": {
+    "@types/command-exists": "^1.2.0",
+    "@types/node": "^18.14.6",
+    "@types/vscode": "^1.76.0",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.35.0",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "command-exists": "^1.2.9",
+    "vscode-languageclient": "^8.1.0"
+  }
+}

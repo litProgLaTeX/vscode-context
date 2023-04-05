@@ -1,3 +1,6 @@
+*.vsix
+package-lock.json
+
 # Logs
 logs
 *.log

@@ -1,0 +1,270 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.context",
+  "name": "ConTeXt",
+  "fileTypes": ["tex"],
+  "firstLineMatch" : "^%% context",
+  "foldingStartMarker": "\\\\(start.*|b(TABLE|TD|TR))",
+  "foldingStopMarker": "\\\\(stop.*|e(TABLE|TD|TR))",
+  "patterns": [ { "include": "#context" } ],
+  "repository": {
+    "context" : {
+      "patterns": [
+        {"include": "#inline-math"},
+        {"include": "#context-command"},
+        {"include": "#context-definition"},
+        {"include": "#context-section"},
+        {"include": "#context-parameters"},
+        {"include": "#context-braces"},
+        {"include": "#context-other-start-stop"},
+        {"include": "#comment-line"},
+        {"include": "#tex-macro"},
+        {"include": "#tex-italics"},
+        {"include": "#tex-bold"},
+        {"include": "#tex-bold-italics"},
+        {"include": "#metafun-code-block"},
+        {"include": "#lua-code-block"},
+        {"include": "#lua-code-inline"},
+        {"include": "#start-text"},
+        {"include": "#stop-text"}    
+      ]
+    },
+    "inline-math" : {
+      "begin": "\\$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.tex"
+        }
+      },
+      "end": "\\$",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.tex"
+        }
+      },
+      "name": "string.other.math.tex",
+      "patterns": [
+        {
+          "match": "\\\\\\$",
+          "name": "constant.character.escape.tex"
+        },
+        {
+          "include": "text.tex.math"
+        },
+        {
+          "include": "$self"
+        }
+      ]
+    },
+    "context-command" : {
+      "captures": {
+
+        "1": {
+          "name": "punctuation.definition.keyword.tex"
+        }
+      },
+      "match": "(\\\\)[^a-zA-Z@]",
+      "name": "constant.character.escape.tex"
+    },
+    "comment-line" : {
+      "captures": {
+        "2": {
+          "name": "punctuation.definition.comment.tex"
+        }
+      },
+      "match": "(%).*$\\n?",
+      "name": "comment.line.percentage.tex"
+    },
+    "tex-italics" : {
+      "begin": "(\\{\\\\it\\s+)",
+      "captures": {
+        "1": {
+          "name": "support.function.it.context"
+        }
+      },
+      "comment": "stolen from LaTeX",
+      "contentName": "markup.italic.context",
+      "end": "(\\})",
+      "name": "meta.it.context",
+      "patterns": [
+        {
+          "include": "text.tex.context"
+        }
+      ]
+    },
+    "tex-bold" : {
+      "begin": "(\\{\\\\bf\\s+)",
+      "captures": {
+        "1": {
+          "name": "support.function.bf.context"
+        }
+      },
+      "comment": "We put the keyword in a capture and name this capture, so that disabling spell checking for \u201ckeyword\u201d won't be inherited by the argument to {\\bf...}.\n\nPut specific matches for particular ConTeXt keyword.functions before the last two more general functions",
+      "contentName": "markup.bold.context",
+      "end": "(\\})",
+      "name": "meta.bf.context",
+      "patterns": [
+        {
+          "include": "text.tex.context"
+        }
+      ]
+    },
+    "tex-bold-italics" : {
+      "begin": "(\\{\\\\bi\\s+)",
+      "captures": {
+        "1": {
+          "name": "support.function.bi.context"
+        }
+      },
+      "comment": "We put the keyword in a capture and name this capture, so that disabling spell checking for \u201ckeyword\u201d won't be inherited by the argument to {\\bi...}.\n\nPut specific matches for particular ConTeXt keyword.functions before the last two more general functions",
+      "contentName": "markup.bolditalic.context",
+      "end": "(\\})",
+      "name": "meta.bi.context",
+      "patterns": [
+        {
+          "include": "text.tex.context"
+        }
+      ]
+    },
+    "context-section" : {
+      "captures": {
+        "1": {
+          "name": "support.function.section.context"
+        },
+        "2": {
+          "name": "entity.name.section.context"
+        }
+      },
+      "match": "(\\\\(?:part|title|chapter|(?:sub)*(?:section|subject)))\\s*(\\{.*?\\})",
+      "name": "meta.function.section.context"
+    },
+    "metafun-code-block" : {
+      "begin": "(\\\\start(unique|use|reusable)?MP)(code|inclusions|graphic)",
+      "captures": {
+        "0": {
+          "name": "keyword.control.document.context"
+        }
+      },
+      "end": "(\\\\stop\\2MP)(\\3)",
+      "name": "meta.scope.tex.metafun",
+      "patterns": [
+        {
+          "include": "source.metafun"
+        }
+      ]
+    },
+    "lua-code-block" : {
+      "begin": "(\\\\startlua)",
+      "captures": {
+        "0": {
+          "name": "keyword.control.document.context"
+        }
+      },
+      "end": "(\\\\stoplua)",
+      "name": "meta.scope.lua",
+      "patterns": [
+        {
+          "include": "source.lua"
+        }
+      ]
+    },
+    "lua-code-inline" : {
+      "begin": "(\\\\ctxlua\\s*){",
+      "captures": {
+        "0": {
+          "name": "support.function.document.context"
+        }
+      },
+      "end": "}",
+      "name": "meta.scope.lua",
+      "patterns": [
+        {
+          "include": "source.lua"
+        }
+      ]
+    },
+    "start-text" : {
+      "captures": {
+        "0": {
+          "name": "keyword.control.document.context"
+        }
+      },
+      "match": "\\\\starttext\\W",
+      "name": "meta.context.starttext"
+    },
+    "stop-text" : {
+      "captures": {
+        "0": {
+          "name": "keyword.control.document.context"
+        }
+      },
+      "match": "\\\\stoptext\\W",
+      "name": "meta.context.stoptext"
+    },
+    "context-parameters" : {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.operator.braces.context"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.operator.braces.context"
+        }
+      },
+      "name": "meta.context.group.arguments",
+      "patterns": [
+        {
+          "match": "([a-zA-Z]+)(=)",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.function-call.context"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.context"
+            }
+          }
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.arguments.context"
+        },
+        {
+          "include": "text.tex.context"
+        }
+      ]
+    },
+    "context-braces" : {
+      "match": "[\\[\\]\\{\\}]",
+      "name": "keyword.operator.braces.context"
+    },
+    "context-other-start-stop" : {
+      "begin": "(\\\\start)([a-zA-Z]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.enviromnent.context"
+        },
+        "2": {
+          "name": "keyword.control.enviromnent.variable"
+        }
+      },
+      "end": "(\\\\stop)(\\2)",
+      "name": "meta.context.environment",
+      "patterns": [
+        {
+          "include": "text.tex.context"
+        }
+      ]
+    },
+    "context-definition" : {
+      "match": "(\\\\define[A-Za-z]*)(?![a-zA-Z])",
+      "name": "storage.type.function.tex"
+    },
+    "tex-macro" : {
+      "match": "(\\\\[A-Za-z]+)(?![a-zA-Z])",
+      "name": "support.function.general.tex"
+    }
+  }
+}
