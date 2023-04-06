@@ -60,6 +60,7 @@
   },
   "scripts": {
     "package": "reset && npm run lint && npm run build && npm run dist && npm version patch && vsce package",
+    "updatesyntax" : "cpy node_modules/lpic-syntaxes/lpicSyntaxes/*.tmGrammar.json syntaxes",
     "dist": "webpack",
     "build": "tsc -p .",
     "lint": "eslint src/ "
@@ -86,6 +87,8 @@
   },
   "dependencies": {
     "command-exists": "^1.2.9",
+    "cpy-cli": "^4.2.0",
+    "lpic-syntaxes": "github:litProgConTeXt/lpic-syntaxes",
     "vscode-languageclient": "^8.1.0"
   }
 }
