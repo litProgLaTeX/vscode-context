@@ -1,3 +1,4 @@
+*.tmGrammar.json
 *.vsix
 package-lock.json
 
