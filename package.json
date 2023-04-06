@@ -2,7 +2,7 @@
   "name": "context-lpic-tools",
   "displayName": "ConTeXt LPiC Tools",
   "description": "ConTeXt for VS Code",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "preview": true,
   "publisher": "lpic-tools",
   "icon": "images/icon.png",
@@ -60,7 +60,7 @@
   },
   "scripts": {
     "package": "reset && npm run updatesyntax && npm run lint && npm run build && npm run dist && npm version patch && vsce package",
-    "updatesyntax" : "cpy --flat node_modules/lpic-syntaxes/lpicSyntaxes/*.tmGrammar.json syntaxes",
+    "updatesyntax": "cpy --flat node_modules/lpic-syntaxes/lpicSyntaxes/*.tmGrammar.json syntaxes",
     "dist": "webpack",
     "build": "tsc -p .",
     "lint": "eslint src/ "
