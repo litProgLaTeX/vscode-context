@@ -2,10 +2,10 @@
   "name": "context-lpic-tools",
   "displayName": "ConTeXt LPiC Tools",
   "description": "ConTeXt for VS Code",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "preview": true,
   "publisher": "lpic-tools",
-  "icon" : "images/icon.png",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/litProgConTeXt/conTeXt-langServer"
@@ -36,13 +36,17 @@
     "languages": [
       {
         "id": "context",
-        "aliases" : [ "ConTeXt" ],
-        "extensions": [ ".tex" ],
-        "firstLine" : "[Cc]on[Tt]e[Xx]t",
-        "configuration" : "./languages/context.json",
-        "icon" : {
-          "light" : "./images/icon.png",
-          "dark" : "./images/icon.png"
+        "aliases": [
+          "ConTeXt"
+        ],
+        "extensions": [
+          ".tex"
+        ],
+        "firstLine": "[Cc]on[Tt]e[Xx]t",
+        "configuration": "./languages/context.json",
+        "icon": {
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
         }
       }
     ],
