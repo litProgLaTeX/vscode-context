@@ -54,13 +54,13 @@
       {
         "language": "context",
         "scopeName": "source.context",
-        "path": "./syntaxes/context.tmGrammar.json"
+        "path": "./syntaxes/context.tmLanguage.json"
       }
     ]
   },
   "scripts": {
     "package": "reset && npm run updatesyntax && npm run lint && npm run build && npm run dist && npm version patch && vsce package",
-    "updatesyntax": "cpy --flat node_modules/lpic-syntaxes/lpicSyntaxes/*.tmGrammar.json syntaxes",
+    "updatesyntax": "cpy --flat node_modules/lpic-syntaxes/lpicSyntaxes/*.tmLanguage.json syntaxes",
     "dist": "webpack",
     "build": "tsc -p .",
     "lint": "eslint src/ "

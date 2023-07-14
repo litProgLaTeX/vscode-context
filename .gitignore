@@ -1,3 +1,4 @@
+*.tmLanguage.json
 *.tmGrammar.json
 *.vsix
 package-lock.json
