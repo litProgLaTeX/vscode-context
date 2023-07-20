@@ -2,7 +2,7 @@
   "name": "context-lpic-tools",
   "displayName": "ConTeXt LPiC Tools",
   "description": "ConTeXt for VS Code",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "preview": true,
   "publisher": "lpic-tools",
   "icon": "images/icon.png",
