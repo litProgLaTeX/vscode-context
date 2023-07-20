@@ -23,7 +23,7 @@ export async function activate(_vsContext: vscode.ExtensionContext) {
   }
 
   const serverOptions: ServerOptions = {
-    run: { command: serverName, args: ['--stdio'] },
+    run: { command: serverName, args: ['--stdio'], options: { env: 'LPIC_LOG_LEVEL=0' } },
     debug: { command: serverName, args: ['--stdio'], options: { env: 'LPIC_LOG_LEVEL=0' } }
   }
 
